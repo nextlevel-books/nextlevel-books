@@ -12,9 +12,7 @@ export default function Club() {
   };
 
   return (
-    <section id="club" className="py-28 px-6 relative overflow-hidden text-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080d18] to-[#090e1c] pointer-events-none" />
-
+    <section id="club" className="py-20 px-6 relative overflow-hidden text-center bg-[#070c18]">
       {/* Subtiler Radialschimmer */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,162,54,0.05)_0%,transparent_70%)] pointer-events-none" />
 
@@ -60,7 +58,7 @@ export default function Club() {
             />
             <button
               type="submit"
-              className="bg-[#c9a236] hover:bg-[#d4b050] text-[#080d18] font-bold px-6 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
+              className="bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-6 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
             >
               Auf die Warteliste
             </button>
