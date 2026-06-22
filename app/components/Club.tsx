@@ -2,13 +2,37 @@
 
 import { useState } from "react";
 
-export default function Club() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+type Status = "idle" | "loading" | "success" | "error";
 
-  const handleSubmit = (e: React.FormEvent) => {
+export default function Club() {
+  const [email, setEmail]         = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [status, setStatus]       = useState<Status>("idle");
+  const [errorMsg, setErrorMsg]   = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstname: firstname || undefined }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(data.error ?? "Etwas ist schiefgelaufen. Bitte versuche es erneut.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg("Keine Verbindung. Bitte versuche es erneut.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -36,7 +60,7 @@ export default function Club() {
           Bonusgeschichten und exklusiven Inhalten.
         </p>
 
-        {submitted ? (
+        {status === "success" ? (
           <div className="border border-[#c9a236]/20 rounded-xl p-10 w-full max-w-md">
             <div className="w-12 h-12 rounded-full bg-[#c9a236]/10 flex items-center justify-center mx-auto mb-4">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a236" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -44,24 +68,42 @@ export default function Club() {
               </svg>
             </div>
             <p className="text-[#c9a236] font-bold text-lg mb-1">Du bist dabei!</p>
-            <p className="text-[#b0a898] text-sm">Wir melden uns, sobald es Neuigkeiten gibt.</p>
+            <p className="text-[#b0a898] text-sm">
+              Wir melden uns, sobald es Neuigkeiten gibt.
+            </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md">
+            {/* Vorname (optional) */}
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="deine@email.de"
-              className="flex-1 bg-[#0d1828] border border-[#1a2e50] focus:border-[#c9a236]/50 focus:outline-none text-[#e8e0d0] placeholder:text-[#3a5070] px-5 py-4 rounded-lg text-sm transition-colors duration-200"
+              type="text"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+              placeholder="Vorname (optional)"
+              className="w-full bg-[#0d1828] border border-[#1a2e50] focus:border-[#c9a236]/50 focus:outline-none text-[#e8e0d0] placeholder:text-[#3a5070] px-5 py-4 rounded-lg text-sm transition-colors duration-200"
             />
-            <button
-              type="submit"
-              className="bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-6 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
-            >
-              Auf die Warteliste
-            </button>
+            {/* E-Mail + Button */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="deine@email.de"
+                className="flex-1 bg-[#0d1828] border border-[#1a2e50] focus:border-[#c9a236]/50 focus:outline-none text-[#e8e0d0] placeholder:text-[#3a5070] px-5 py-4 rounded-lg text-sm transition-colors duration-200"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="bg-[#c9a236] hover:bg-[#d4b050] disabled:opacity-60 disabled:cursor-not-allowed text-[#070c18] font-bold px-6 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
+              >
+                {status === "loading" ? "…" : "Auf die Warteliste"}
+              </button>
+            </div>
+
+            {status === "error" && (
+              <p className="text-red-400 text-xs text-left mt-1">{errorMsg}</p>
+            )}
           </form>
         )}
 
