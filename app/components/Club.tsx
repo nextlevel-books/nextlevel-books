@@ -13,19 +13,16 @@ export default function Club() {
 
   return (
     <section id="club" className="py-28 px-6 relative overflow-hidden text-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080d18] to-[#0a1220] pointer-events-none" />
-
-      {/* Dezente goldene Linie oben */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-[#c9a236]/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#080d18] to-[#090e1c] pointer-events-none" />
 
       {/* Subtiler Radialschimmer */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,162,54,0.05)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(201,162,54,0.05)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center w-full">
 
         <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
-          <span className="text-xs font-semibold tracking-[0.35em] text-[#c9a236] uppercase">
+          <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
             Exklusiv
           </span>
         </div>
@@ -36,7 +33,7 @@ export default function Club() {
           <span className="text-[#c9a236]">entsteht</span>
         </h2>
 
-        <p className="text-[#7a90ae] text-base md:text-lg leading-relaxed mb-12 max-w-md">
+        <p className="text-[#b0a898] text-base leading-relaxed mb-12 max-w-md">
           Trage dich ein und erfahre als Erstes von neuen Büchern,
           Bonusgeschichten und exklusiven Inhalten.
         </p>
@@ -49,7 +46,7 @@ export default function Club() {
               </svg>
             </div>
             <p className="text-[#c9a236] font-bold text-lg mb-1">Du bist dabei!</p>
-            <p className="text-[#7a90ae] text-sm">Wir melden uns, sobald es Neuigkeiten gibt.</p>
+            <p className="text-[#b0a898] text-sm">Wir melden uns, sobald es Neuigkeiten gibt.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
@@ -63,7 +60,7 @@ export default function Club() {
             />
             <button
               type="submit"
-              className="bg-[#c9a236] hover:bg-[#d4b050] text-[#080d18] font-bold px-6 py-4 rounded-lg text-xs tracking-[0.2em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
+              className="bg-[#c9a236] hover:bg-[#d4b050] text-[#080d18] font-bold px-6 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_20px_rgba(201,162,54,0.35)] whitespace-nowrap"
             >
               Auf die Warteliste
             </button>

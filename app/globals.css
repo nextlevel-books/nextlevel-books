@@ -3,44 +3,73 @@
 @theme inline {
   --color-background: #080d18;
   --color-foreground: #e8e0d0;
-
-  /* Gold – Primärfarbe (Titellettern Cover) */
-  --color-gold:        #c9a236;
-  --color-gold-light:  #d4b050;
-  --color-gold-dark:   #a8821e;
-
-  /* Amber – Akzent (Fensterlicht Cover) */
-  --color-amber:       #e8a030;
-  --color-amber-dim:   rgba(232, 160, 48, 0.12);
-
-  /* Nachtblau – Flächen */
-  --color-navy:        #0d1828;
-  --color-navy-mid:    #121f35;
-  --color-navy-light:  #1a2e50;
-
+  --color-gold:       #c9a236;
+  --color-gold-light: #d4b050;
+  --color-amber:      #e8a030;
+  --color-navy:       #0d1828;
+  --color-navy-mid:   #121f35;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* ─── Typografie-System ─────────────────────────────────────
+   Überschriften   → text-white
+   Kicker/Label    → text-[#c9a236]   (Gold)
+   Akzentwort      → text-[#c9a236]
+   Subline/Zitat   → text-[#e8a030]   (Amber)
+   Fließtext       → text-[#b0a898]   (warmes Hellgrau, einheitlich)
+   Sekundär        → text-[#6a7a8a]
+─────────────────────────────────────────────────────────── */
+
+html { scroll-behavior: smooth; }
 
 body {
   background: #080d18;
-  color: #e8e0d0;
+  color: #b0a898;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Page-in Fade ───────────────────────────────────────── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in { opacity: 0; animation: fadeInUp 0.9s ease forwards; }
-.delay-1 { animation-delay: 0.15s; }
-.delay-2 { animation-delay: 0.3s;  }
-.delay-3 { animation-delay: 0.45s; }
-.delay-4 { animation-delay: 0.6s;  }
-.delay-5 { animation-delay: 0.75s; }
+.fade-in          { opacity: 0; animation: fadeInUp 0.9s ease forwards; }
+.delay-1          { animation-delay: 0.2s; }
+.delay-2          { animation-delay: 0.4s; }
+.delay-3          { animation-delay: 0.6s; }
+.delay-4          { animation-delay: 0.8s; }
+
+/* ─── Hero-Sätze: filmisches Reveal (Blur → Clear) ──────── */
+@keyframes sentenceReveal {
+  0%   { opacity: 0; filter: blur(6px); transform: translateY(10px); }
+  100% { opacity: 1; filter: blur(0);   transform: translateY(0); }
+}
+
+.sentence        { opacity: 0; animation: sentenceReveal 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+.sentence-1      { animation-delay: 1.4s; }
+.sentence-2      { animation-delay: 2.0s; }
+.sentence-3      { animation-delay: 2.6s; }
+.sentence-last   { opacity: 0; animation: sentenceReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards; animation-delay: 3.3s; }
+
+/* ─── Wetterleuchtung (sehr dezent, unregelmäßig) ───────── */
+@keyframes weatherglow-a {
+  0%, 88%, 90.5%, 93%, 100% { opacity: 0; }
+  89%, 92%                   { opacity: 0.06; }
+  89.8%                      { opacity: 0.03; }
+}
+@keyframes weatherglow-b {
+  0%, 55%, 57.5%, 60%, 100% { opacity: 0; }
+  56%, 59%                   { opacity: 0.05; }
+  56.8%                      { opacity: 0.02; }
+}
+@keyframes weatherglow-c {
+  0%, 72%, 73.5%, 100% { opacity: 0; }
+  72.5%, 73%            { opacity: 0.04; }
+}
+
+.lightning-a { animation: weatherglow-a 18s ease-in-out infinite; }
+.lightning-b { animation: weatherglow-b 24s ease-in-out infinite 6s; }
+.lightning-c { animation: weatherglow-c 30s ease-in-out infinite 14s; }
