@@ -18,6 +18,16 @@ export const metadata: Metadata = {
     "Fünf Fremde. Sechs Wochen. Keine zweite Chance. Geschichten über Freundschaft, Mut, Vertrauen und die Frage, wer du sein möchtest, wenn niemand zuschaut.",
   keywords: ["Jugendbuch", "Next Level", "Daniel Feigenbutz", "Jugendroman"],
   authors: [{ name: "Daniel Feigenbutz" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico",        sizes: "32x32",  type: "image/png" },
+      { url: "/favicon-32x32.png",  sizes: "32x32",  type: "image/png" },
+      { url: "/favicon-192x192.png",sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "NEXT LEVEL – Jugendbuchreihe",
     description:
