@@ -78,6 +78,23 @@ export async function POST(request: Request) {
     payload.attributes = { FIRSTNAME: firstname.trim() };
   }
 
+  // ── 3b. Template vorab per GET prüfen ─────────────────────────────────────
+  try {
+    const tplRes = await fetch(`https://api.brevo.com/v3/smtp/templates/${templateIdNum}`, {
+      headers: { "api-key": apiKey },
+    });
+    const tpl = await tplRes.json();
+    console.log("[waitlist] template check:", {
+      id:          tpl.id,
+      name:        tpl.name,
+      isActive:    tpl.isActive,
+      doiTemplate: tpl.doiTemplate,
+      subject:     tpl.subject,
+    });
+  } catch (e) {
+    console.error("[waitlist] template GET failed:", e);
+  }
+
   const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
 
   console.log("[waitlist] request details:", {
