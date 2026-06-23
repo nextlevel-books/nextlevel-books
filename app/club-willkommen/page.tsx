@@ -13,7 +13,46 @@ const perks = [
   "Aktionen und besondere Inhalte für Club-Mitglieder",
 ];
 
-export default function ClubWillkommen() {
+async function updateFirstname(email: string, firstname: string): Promise<void> {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    console.error("[club-willkommen] BREVO_API_KEY missing, skipping FIRSTNAME update");
+    return;
+  }
+  try {
+    const res = await fetch(
+      `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "api-key": apiKey },
+        body: JSON.stringify({ attributes: { FIRSTNAME: firstname } }),
+      }
+    );
+    if (res.ok || res.status === 204) {
+      console.log("[club-willkommen] FIRSTNAME updated for:", email);
+    } else {
+      const body = await res.json().catch(() => ({}));
+      console.error("[club-willkommen] FIRSTNAME update failed:", { status: res.status, body });
+    }
+  } catch (e) {
+    console.error("[club-willkommen] FIRSTNAME update error:", e);
+  }
+}
+
+export default async function ClubWillkommen({
+  searchParams,
+}: {
+  searchParams: Promise<{ email?: string; fn?: string }>;
+}) {
+  const params = await searchParams;
+  const email     = params.email?.trim() ?? "";
+  const firstname = params.fn?.trim() ?? "";
+
+  // Serverseitig FIRSTNAME in Brevo aktualisieren, sobald DOI bestätigt wurde.
+  if (email && firstname) {
+    await updateFirstname(email, firstname);
+  }
+
   return (
     <main className="min-h-screen bg-[#070c18] flex flex-col items-center justify-center px-6 py-20 text-center relative overflow-hidden">
 

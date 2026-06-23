@@ -67,22 +67,32 @@ export async function POST(request: Request) {
   // POST /v3/contacts/doubleOptinConfirmation
   // Brevo versendet die DOI-Mail automatisch und trägt den Kontakt erst nach
   // Bestätigung des Links aktiv in die Liste ein.
+  const firstnameTrimmed = firstname?.trim() ?? "";
+
+  // Redirect-URL mit email + firstname anreichern, damit /club-willkommen
+  // nach DOI-Bestätigung den Kontakt serverseitig mit FIRSTNAME aktualisieren kann.
+  const finalRedirectionUrl = new URL(redirectionUrl);
+  finalRedirectionUrl.searchParams.set("email", email);
+  if (firstnameTrimmed) {
+    finalRedirectionUrl.searchParams.set("fn", firstnameTrimmed);
+  }
+
   const payload: Record<string, unknown> = {
     email,
     includeListIds: [listIdNum],
     templateId:     templateIdNum,
-    redirectionUrl,
+    redirectionUrl: finalRedirectionUrl.toString(),
+    // attributes wird für Template-Personalisierung (Betreff/Body) mitgesendet,
+    // aber vom DOI-Endpunkt nicht dauerhaft im Kontaktprofil gespeichert.
+    // Die dauerhafte Speicherung erfolgt über /club-willkommen nach Bestätigung.
+    ...(firstnameTrimmed ? { attributes: { FIRSTNAME: firstnameTrimmed } } : {}),
   };
 
-  const firstnameTrimmed = firstname?.trim() ?? "";
-  if (firstnameTrimmed) {
-    payload.attributes = { FIRSTNAME: firstnameTrimmed };
-  }
-
   console.log("[waitlist] firstname check:", {
-    hasFirstname:       !!firstnameTrimmed,
-    firstname:          firstnameTrimmed || "(empty)",
+    hasFirstname:         !!firstnameTrimmed,
+    firstname:            firstnameTrimmed || "(empty)",
     "payload.attributes": payload.attributes ?? "(not set)",
+    finalRedirectionUrl:  finalRedirectionUrl.toString(),
   });
 
   const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
