@@ -11,10 +11,6 @@ export default function ForWhom() {
   return (
     <section className="py-20 px-6 relative text-center overflow-hidden bg-[#070c18]">
       <div className="relative z-10 max-w-xl mx-auto">
-        <span className="inline-block text-[11px] font-semibold tracking-[0.45em] text-[#c9a236] uppercase mb-6">
-          Für wen?
-        </span>
-
         {/*
           "NEXT LEVEL" darf nicht zwischen den Wörtern umbrechen.
           Lösung: whitespace-nowrap auf dem goldenen Span.

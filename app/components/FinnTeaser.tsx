@@ -12,9 +12,12 @@ export default function FinnTeaser() {
 
           {/* ── Titel-Block: nur Mobile (order-1) ── */}
           <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
-            <span className="inline-block text-[11px] font-semibold tracking-[0.45em] text-[#e8a030] uppercase mb-3">
-              Demnächst
-            </span>
+            <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
+                Demnächst
+              </span>
+            </div>
             <h2 className="text-4xl font-black text-white leading-tight">
               NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
             </h2>
@@ -52,9 +55,12 @@ export default function FinnTeaser() {
 
             {/* Titel: nur Desktop */}
             <div className="hidden md:flex flex-col items-start mb-5">
-              <span className="inline-block text-[11px] font-semibold tracking-[0.45em] text-[#e8a030] uppercase mb-3">
-                Demnächst
-              </span>
+              <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
+                <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
+                  Demnächst
+                </span>
+              </div>
               <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
                 NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
               </h2>
