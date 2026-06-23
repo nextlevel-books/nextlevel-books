@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     payload.attributes = { FIRSTNAME: firstname.trim() };
   }
 
-  // ── 3b. Template vorab per GET prüfen ─────────────────────────────────────
+  // ── 3b. Alle Templates abrufen und DOI-Templates identifizieren ───────────
   try {
     const tplRes = await fetch(`https://api.brevo.com/v3/smtp/templates/${templateIdNum}`, {
       headers: { "api-key": apiKey },
@@ -93,6 +93,25 @@ export async function POST(request: Request) {
     });
   } catch (e) {
     console.error("[waitlist] template GET failed:", e);
+  }
+
+  try {
+    const listRes = await fetch(
+      "https://api.brevo.com/v3/smtp/templates?templateStatus=true&limit=50&offset=0",
+      { headers: { "api-key": apiKey } }
+    );
+    const listData = await listRes.json();
+    const templates = listData.templates ?? [];
+    const doiTemplates = templates.filter((t: Record<string, unknown>) => t.doiTemplate === true);
+    console.log("[waitlist] all active templates count:", templates.length);
+    console.log("[waitlist] DOI templates:", doiTemplates.map((t: Record<string, unknown>) => ({
+      id: t.id, name: t.name, isActive: t.isActive, doiTemplate: t.doiTemplate,
+    })));
+    console.log("[waitlist] ALL templates (id+name+doi):", templates.map((t: Record<string, unknown>) => ({
+      id: t.id, name: t.name, doiTemplate: t.doiTemplate,
+    })));
+  } catch (e) {
+    console.error("[waitlist] template list failed:", e);
   }
 
   const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
