@@ -102,14 +102,15 @@ export async function POST(request: Request) {
     );
     const listData = await listRes.json();
     const templates = listData.templates ?? [];
-    const doiTemplates = templates.filter((t: Record<string, unknown>) => t.doiTemplate === true);
-    console.log("[waitlist] all active templates count:", templates.length);
-    console.log("[waitlist] DOI templates:", doiTemplates.map((t: Record<string, unknown>) => ({
-      id: t.id, name: t.name, isActive: t.isActive, doiTemplate: t.doiTemplate,
-    })));
-    console.log("[waitlist] ALL templates (id+name+doi):", templates.map((t: Record<string, unknown>) => ({
-      id: t.id, name: t.name, doiTemplate: t.doiTemplate,
-    })));
+    const ids: number[] = templates.map((t: Record<string, unknown>) => Number(t.id));
+    const details = await Promise.all(ids.map(async (id) => {
+      const r = await fetch(`https://api.brevo.com/v3/smtp/templates/${id}`, {
+        headers: { "api-key": apiKey },
+      });
+      const d = await r.json();
+      return { id: d.id, name: d.name, isActive: d.isActive, doiTemplate: d.doiTemplate };
+    }));
+    console.log("[waitlist] all templates with doiTemplate flag:", details);
   } catch (e) {
     console.error("[waitlist] template list failed:", e);
   }
