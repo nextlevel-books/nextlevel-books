@@ -74,9 +74,16 @@ export async function POST(request: Request) {
     redirectionUrl,
   };
 
-  if (firstname?.trim()) {
-    payload.attributes = { FIRSTNAME: firstname.trim() };
+  const firstnameTrimmed = firstname?.trim() ?? "";
+  if (firstnameTrimmed) {
+    payload.attributes = { FIRSTNAME: firstnameTrimmed };
   }
+
+  console.log("[waitlist] firstname check:", {
+    hasFirstname:       !!firstnameTrimmed,
+    firstname:          firstnameTrimmed || "(empty)",
+    "payload.attributes": payload.attributes ?? "(not set)",
+  });
 
   const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
 
