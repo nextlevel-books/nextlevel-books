@@ -4,6 +4,18 @@ import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+// ── Erfolgsmeldung ──────────────────────────────────────────────────────────
+// Aktuell: direkte Bestätigung (kein Double Opt-In aktiv).
+// Für Double Opt-In später austauschen mit SUCCESS_MESSAGE_DOI:
+const SUCCESS_MESSAGE =
+  "Wir melden uns, sobald es Neuigkeiten gibt.";
+
+// TODO: aktivieren sobald Double Opt-In in Brevo eingeschaltet ist:
+// const SUCCESS_MESSAGE_DOI =
+//   "Fast geschafft. Du erhältst gleich eine E-Mail zur Bestätigung deiner " +
+//   "Anmeldung. Bitte klicke auf den Link in der E-Mail, damit du Neuigkeiten " +
+//   "aus der Welt von NEXT LEVEL erhältst.";
+
 export default function Club() {
   const [email, setEmail]         = useState("");
   const [firstname, setFirstname] = useState("");
@@ -68,9 +80,7 @@ export default function Club() {
               </svg>
             </div>
             <p className="text-[#c9a236] font-bold text-lg mb-1">Du bist dabei!</p>
-            <p className="text-[#b0a898] text-sm">
-              Wir melden uns, sobald es Neuigkeiten gibt.
-            </p>
+            <p className="text-[#b0a898] text-sm">{SUCCESS_MESSAGE}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full max-w-md">

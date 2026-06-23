@@ -2,18 +2,14 @@
 
 import Image from "next/image";
 
-const goldTextStyle: React.CSSProperties = {
-  background:
-    "linear-gradient(175deg, #f5df80 0%, #c9a236 18%, #7a5a10 38%, #d4a830 52%, #f0d060 62%, #a07020 76%, #c9a236 88%, #e8c850 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  filter: "drop-shadow(0 3px 10px rgba(0,0,0,0.7))",
-};
-
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-28 overflow-hidden text-center bg-[#070c18]">
+    /*
+      Mobile: justify-start + pt-20 → Inhalt startet ~80px vom oberen Rand,
+              CTAs deutlich früher sichtbar ohne Scrollen.
+      Desktop: justify-center → vertikale Zentrierung wie bisher.
+    */
+    <section className="relative min-h-screen flex flex-col items-center justify-start md:justify-center px-6 pt-20 pb-16 md:py-28 overflow-hidden text-center bg-[#070c18]">
 
       {/* ── Hintergrundbild ─────────────────────────────── */}
       <div className="absolute inset-0 bg-[#070c18]">
@@ -29,50 +25,28 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070c18]/70 via-[#070c18]/45 to-[#070c18]" />
       </div>
 
-      {/* ── Wetterleuchten – hinter allem, kein z-index ── */}
+      {/* ── Wetterleuchten ──────────────────────────────── */}
       <div className="absolute inset-0 bg-[#b8cce0] pointer-events-none lightning-a" />
       <div className="absolute inset-0 bg-[#c0d0e8] pointer-events-none lightning-b" />
       <div className="absolute inset-0 bg-[#a8c0d8] pointer-events-none lightning-c" />
 
-      {/* ── SVG-Blitze: echte Gewitterblitze im Hintergrund ─
-           z-index 1 → über Hintergrundbild, unter dem Textinhalt (z-10) */}
+      {/* ── SVG-Blitze (hinter Text, vor Hintergrundbild) ─ */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-
-        {/* Blitz 1 – links-oben, zweifach verzweigt */}
-        <svg
-          className="bolt-1 absolute"
-          style={{ top: "4%", left: "18%", width: "8vw", maxWidth: 80 }}
-          viewBox="0 0 60 220"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="bolt-1 absolute" style={{ top: "4%", left: "18%", width: "8vw", maxWidth: 80 }}
+          viewBox="0 0 60 220" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 30 0 L 22 55 L 34 55 L 18 130" stroke="rgba(210,230,255,0.9)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M 34 55 L 48 95" stroke="rgba(210,230,255,0.55)" strokeWidth="0.7" strokeLinecap="round"/>
           <path d="M 18 130 L 10 180" stroke="rgba(210,230,255,0.4)" strokeWidth="0.6" strokeLinecap="round"/>
           <path d="M 18 130 L 28 175" stroke="rgba(210,230,255,0.35)" strokeWidth="0.5" strokeLinecap="round"/>
         </svg>
-
-        {/* Blitz 2 – rechts-oben, schlanker */}
-        <svg
-          className="bolt-2 absolute"
-          style={{ top: "2%", right: "22%", width: "6vw", maxWidth: 60 }}
-          viewBox="0 0 50 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="bolt-2 absolute" style={{ top: "2%", right: "22%", width: "6vw", maxWidth: 60 }}
+          viewBox="0 0 50 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 25 0 L 18 50 L 30 50 L 14 120" stroke="rgba(210,230,255,0.85)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M 30 50 L 42 85" stroke="rgba(210,230,255,0.45)" strokeWidth="0.6" strokeLinecap="round"/>
           <path d="M 14 120 L 6 170" stroke="rgba(210,230,255,0.35)" strokeWidth="0.5" strokeLinecap="round"/>
         </svg>
-
-        {/* Blitz 3 – Mitte-rechts, flacher Winkel */}
-        <svg
-          className="bolt-3 absolute"
-          style={{ top: "6%", left: "54%", width: "5vw", maxWidth: 50 }}
-          viewBox="0 0 45 180"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="bolt-3 absolute" style={{ top: "6%", left: "54%", width: "5vw", maxWidth: 50 }}
+          viewBox="0 0 45 180" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 22 0 L 16 45 L 28 45 L 12 110" stroke="rgba(210,230,255,0.80)" strokeWidth="1.0" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M 28 45 L 38 78" stroke="rgba(210,230,255,0.40)" strokeWidth="0.6" strokeLinecap="round"/>
           <path d="M 12 110 L 20 155" stroke="rgba(210,230,255,0.30)" strokeWidth="0.5" strokeLinecap="round"/>
@@ -82,34 +56,34 @@ export default function Hero() {
       {/* ── Textinhalt ─────────────────────────────────── */}
       <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto" style={{ zIndex: 10 }}>
 
+        {/* Kicker */}
         <div className="fade-in">
           <span className="inline-block text-[11px] font-semibold tracking-[0.45em] text-[#c9a236] uppercase mb-8">
             Eine Jugendbuchreihe
           </span>
         </div>
 
-        {/* Titel – beide Zeilen metallisch gold */}
+        {/* Titel – beide Zeilen mit Metallic Shine (Klasse aus globals.css) */}
         <div className="fade-in delay-1 mb-7 leading-[0.88]">
-          <h1 className="text-[clamp(4rem,16vw,10rem)] font-black tracking-tight block" style={goldTextStyle}>
+          <h1 className="text-[clamp(4rem,16vw,10rem)] font-black tracking-tight block gold-shine">
             NEXT
           </h1>
-          <h1 className="text-[clamp(4rem,16vw,10rem)] font-black tracking-tight block" style={goldTextStyle}>
+          <h1 className="text-[clamp(4rem,16vw,10rem)] font-black tracking-tight block gold-shine">
             LEVEL
           </h1>
         </div>
 
         {/* Untertitel */}
-        <p className="fade-in delay-2 text-base md:text-lg text-[#b0a898] font-normal mb-12 max-w-md leading-relaxed">
+        <p className="fade-in delay-2 text-base md:text-lg text-[#b0a898] font-normal mb-10 max-w-md leading-relaxed">
           Geschichten über Freundschaft, Mut, Vertrauen und die Frage,
           wer du sein möchtest, wenn niemand zuschaut.
         </p>
 
-        {/* Sätze – alle vier mit gestaffeltem Blur-Fade */}
-        <div className="mb-14 space-y-3 text-sm md:text-base">
+        {/* Sätze – alle vier gestaffelt, Satz 4 mit emotionalem Glow */}
+        <div className="mb-12 space-y-3 text-sm md:text-base">
           <p className="sentence sentence-1 text-[#b0a898]">Du musst nicht perfekt sein.</p>
           <p className="sentence sentence-2 text-[#b0a898]">Du musst nicht überall dazugehören.</p>
           <p className="sentence sentence-3 text-[#b0a898]">Du musst nicht alle Antworten kennen.</p>
-          {/* Vierter Satz: größer, weiß, bold – class sentence-4 aus globals.css */}
           <p className="sentence-4 mt-6 text-white font-bold text-lg md:text-xl tracking-wide">
             Aber du bist nicht allein.
           </p>
