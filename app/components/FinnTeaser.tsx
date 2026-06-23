@@ -69,7 +69,7 @@ export default function FinnTeaser() {
               </span>
             </div>
 
-            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm">
+            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none md:whitespace-nowrap">
               Fremde Stadt. Fremde Sprache.<br className="sm:hidden" /> Ein neues Ich.
             </p>
 
