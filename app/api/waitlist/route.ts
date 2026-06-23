@@ -78,54 +78,9 @@ export async function POST(request: Request) {
     payload.attributes = { FIRSTNAME: firstname.trim() };
   }
 
-  // ── 3b. Alle Templates abrufen und DOI-Templates identifizieren ───────────
-  try {
-    const tplRes = await fetch(`https://api.brevo.com/v3/smtp/templates/${templateIdNum}`, {
-      headers: { "api-key": apiKey },
-    });
-    const tpl = await tplRes.json();
-    console.log("[waitlist] template check:", {
-      id:          tpl.id,
-      name:        tpl.name,
-      isActive:    tpl.isActive,
-      doiTemplate: tpl.doiTemplate,
-      subject:     tpl.subject,
-    });
-  } catch (e) {
-    console.error("[waitlist] template GET failed:", e);
-  }
-
-  try {
-    const listRes = await fetch(
-      "https://api.brevo.com/v3/smtp/templates?templateStatus=true&limit=50&offset=0",
-      { headers: { "api-key": apiKey } }
-    );
-    const listData = await listRes.json();
-    const templates = listData.templates ?? [];
-    const ids: number[] = templates.map((t: Record<string, unknown>) => Number(t.id));
-    const details = await Promise.all(ids.map(async (id) => {
-      const r = await fetch(`https://api.brevo.com/v3/smtp/templates/${id}`, {
-        headers: { "api-key": apiKey },
-      });
-      const d = await r.json();
-      return { id: d.id, name: d.name, isActive: d.isActive, doiTemplate: d.doiTemplate };
-    }));
-    console.log("[waitlist] all templates with doiTemplate flag:", details);
-  } catch (e) {
-    console.error("[waitlist] template list failed:", e);
-  }
-
   const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
 
-  console.log("[waitlist] request details:", {
-    endpoint,
-    email,
-    listId:     listIdNum,
-    templateId: templateIdNum,
-    redirectionUrl,
-    hasFirstname: !!firstname?.trim(),
-    payload: JSON.stringify(payload),
-  });
+  console.log("[waitlist] calling Brevo DOI API for:", email, "listId:", listIdNum, "templateId:", templateIdNum);
 
   let res: Response;
   try {
@@ -153,7 +108,6 @@ export async function POST(request: Request) {
 
   console.error("[waitlist] Brevo DOI API error:", {
     status:     res.status,
-    body:       errorBody,
     code:       errorBody?.code,
     message:    errorBody?.message,
     listId:     listIdNum,
@@ -161,10 +115,5 @@ export async function POST(request: Request) {
     email,
   });
 
-  // Brevo-Fehlermeldung direkt ans Frontend durchleiten (nur für Debugging)
-  const debugMsg = errorBody?.code && errorBody?.message
-    ? `Brevo [${errorBody.code}]: ${errorBody.message}`
-    : "Eintragung fehlgeschlagen";
-
-  return NextResponse.json({ error: debugMsg }, { status: 500 });
+  return NextResponse.json({ error: "Eintragung fehlgeschlagen" }, { status: 500 });
 }
