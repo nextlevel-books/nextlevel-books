@@ -4,17 +4,13 @@ import { useState } from "react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-// ── Erfolgsmeldung ──────────────────────────────────────────────────────────
-// Aktuell: direkte Bestätigung (kein Double Opt-In aktiv).
-// Für Double Opt-In später austauschen mit SUCCESS_MESSAGE_DOI:
+// ── Erfolgsmeldung (Double Opt-In aktiv) ────────────────────────────────────
+// Brevo versendet die Bestätigungsmail automatisch.
+// Der Kontakt wird erst nach Klick auf den Link aktiv in die Liste aufgenommen.
 const SUCCESS_MESSAGE =
-  "Wir melden uns, sobald es Neuigkeiten gibt.";
-
-// TODO: aktivieren sobald Double Opt-In in Brevo eingeschaltet ist:
-// const SUCCESS_MESSAGE_DOI =
-//   "Fast geschafft. Du erhältst gleich eine E-Mail zur Bestätigung deiner " +
-//   "Anmeldung. Bitte klicke auf den Link in der E-Mail, damit du Neuigkeiten " +
-//   "aus der Welt von NEXT LEVEL erhältst.";
+  "Fast geschafft. Du erhältst gleich eine E-Mail zur Bestätigung deiner " +
+  "Anmeldung. Bitte klicke auf den Link in der E-Mail, damit wir dich über " +
+  "Neuigkeiten aus der Welt von NEXT LEVEL informieren können.";
 
 export default function Club() {
   const [email, setEmail]         = useState("");
