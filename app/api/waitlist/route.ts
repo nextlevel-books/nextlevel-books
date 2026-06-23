@@ -78,11 +78,21 @@ export async function POST(request: Request) {
     payload.attributes = { FIRSTNAME: firstname.trim() };
   }
 
-  console.log("[waitlist] calling Brevo DOI API for:", email, "listId:", listIdNum, "templateId:", templateIdNum);
+  const endpoint = "https://api.brevo.com/v3/contacts/doubleOptinConfirmation";
+
+  console.log("[waitlist] request details:", {
+    endpoint,
+    email,
+    listId:     listIdNum,
+    templateId: templateIdNum,
+    redirectionUrl,
+    hasFirstname: !!firstname?.trim(),
+    payload: JSON.stringify(payload),
+  });
 
   let res: Response;
   try {
-    res = await fetch("https://api.brevo.com/v3/contacts/doubleOptinConfirmation", {
+    res = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,17 +111,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
   }
 
-  let errorBody: unknown = "(no body)";
+  let errorBody: { code?: string; message?: string } = {};
   try { errorBody = await res.json(); } catch { /* ignore */ }
 
   console.error("[waitlist] Brevo DOI API error:", {
-    status:   res.status,
-    headers:  Object.fromEntries(res.headers.entries()),
-    body:     errorBody,
-    listId:   listIdNum,
+    status:     res.status,
+    body:       errorBody,
+    code:       errorBody?.code,
+    message:    errorBody?.message,
+    listId:     listIdNum,
     templateId: templateIdNum,
     email,
   });
 
-  return NextResponse.json({ error: "Eintragung fehlgeschlagen" }, { status: 500 });
+  // Brevo-Fehlermeldung direkt ans Frontend durchleiten (nur für Debugging)
+  const debugMsg = errorBody?.code && errorBody?.message
+    ? `Brevo [${errorBody.code}]: ${errorBody.message}`
+    : "Eintragung fehlgeschlagen";
+
+  return NextResponse.json({ error: debugMsg }, { status: 500 });
 }
