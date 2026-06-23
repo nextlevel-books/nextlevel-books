@@ -61,10 +61,15 @@ export default function Club() {
           </span>
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
-          Der Next Level Club
-          <br />
-          <span className="text-[#c9a236]">entsteht</span>
+        {/*
+          DER       → weiß
+          NEXT LEVEL CLUB → komplett gold, Großbuchstaben
+          ENTSTEHT  → weiß
+        */}
+        <h2 className="text-3xl md:text-4xl font-black leading-snug mb-4 uppercase tracking-wide">
+          <span className="text-white block">Der</span>
+          <span className="text-[#c9a236] block">Next Level Club</span>
+          <span className="text-white block">entsteht</span>
         </h2>
 
         <p className="text-[#b0a898] text-base leading-relaxed mb-12 max-w-md">

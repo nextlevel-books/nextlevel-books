@@ -15,9 +15,13 @@ export default function ForWhom() {
           Für wen?
         </span>
 
+        {/*
+          "NEXT LEVEL" darf nicht zwischen den Wörtern umbrechen.
+          Lösung: whitespace-nowrap auf dem goldenen Span.
+        */}
         <h2 className="text-3xl md:text-4xl font-black text-white mb-14 leading-tight">
           Für wen ist{" "}
-          <span className="text-[#c9a236]">NEXT LEVEL</span>?
+          <span className="text-[#c9a236] whitespace-nowrap">NEXT LEVEL</span>?
         </h2>
 
         <div className="flex flex-col gap-8">

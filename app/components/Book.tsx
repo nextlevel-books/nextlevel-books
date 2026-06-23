@@ -8,20 +8,14 @@ export default function Book() {
       <div className="absolute inset-0 bg-[#070c18] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        {/*
-          Mobile:  flex-col → Titel (order-1), Cover (order-2), Text (order-3), Button (order-4)
-          Desktop: 2-Spalten-Grid → Cover links, alles Text rechts
-        */}
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-center text-center md:text-left">
 
-          {/* ── Titel + Band-Info: mobile order-1, Desktop im rechten Block ── */}
-          <div className="order-1 md:hidden flex flex-col items-center w-full">
-            <div className="flex flex-col items-center gap-y-1 mb-0">
-              <h2 className="text-4xl font-black text-white leading-tight">NEXT LEVEL</h2>
-              <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/60 uppercase">
-                · Band 1
-              </span>
-            </div>
+          {/* ── Titel + Band-Hinweis: nur Mobile (order-1) ── */}
+          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
+            <h2 className="text-4xl font-black text-white leading-tight">NEXT LEVEL</h2>
+            <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase">
+              Band 1 der Hauptreihe
+            </span>
           </div>
 
           {/* ── Cover: mobile order-2, Desktop linke Spalte ── */}
@@ -29,10 +23,11 @@ export default function Book() {
             <div className="relative group">
               <div className="absolute -inset-10 bg-[radial-gradient(ellipse_at_center,rgba(201,162,54,0.13)_0%,transparent_65%)] opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               <div
-                className="relative overflow-hidden rounded-xl transition-transform duration-500 group-hover:-translate-y-2 cover-reflex"
+                className="relative overflow-hidden rounded-xl transition-transform duration-500 group-hover:-translate-y-2"
                 style={{
                   width: "clamp(200px, 42vw, 252px)",
                   aspectRatio: "2 / 3",
+                  boxShadow: "0 0 0 1px rgba(201,162,54,0.18), 0 28px 64px rgba(0,0,0,0.85), 0 8px 20px rgba(0,0,0,0.5)",
                 }}
               >
                 <Image
@@ -48,7 +43,7 @@ export default function Book() {
             </div>
           </div>
 
-          {/* ── Beschreibungstext: mobile order-3 ── */}
+          {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
           <div className="order-3 md:hidden flex flex-col items-center w-full">
             <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
               Fünf Fremde. Sechs Wochen. Keine zweite Chance.
@@ -60,12 +55,8 @@ export default function Book() {
               Was als Schulprojekt beginnt, wird zu einer Reise voller Konflikte,
               Freundschaften, Geheimnisse und Entscheidungen, die alles verändern können.
             </p>
-            <a
-              href="https://amzn.eu/d/01jVEtHN"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]"
-            >
+            <a href="https://amzn.eu/d/01jVEtHN" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
                 <line x1="3" y1="6" x2="21" y2="6"/>
@@ -75,15 +66,14 @@ export default function Book() {
             </a>
           </div>
 
-          {/* ── Desktop: rechte Spalte mit allem ── */}
+          {/* ── Desktop: rechte Spalte komplett ── */}
           <div className="hidden md:flex flex-col items-start">
-            {/* Titel + Band nebeneinander auf Desktop */}
-            <div className="flex flex-row flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
-              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">NEXT LEVEL</h2>
-              <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/60 uppercase">
-                · Band 1
-              </span>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
+              NEXT LEVEL
+            </h2>
+            <span className="inline-block text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase mb-5">
+              Band 1 der Hauptreihe
+            </span>
             <p className="text-[#e8a030] font-semibold text-lg mb-6 leading-snug">
               Fünf Fremde. Sechs Wochen. Keine zweite Chance.
             </p>
@@ -94,12 +84,8 @@ export default function Book() {
               Was als Schulprojekt beginnt, wird zu einer Reise voller Konflikte,
               Freundschaften, Geheimnisse und Entscheidungen, die alles verändern können.
             </p>
-            <a
-              href="https://amzn.eu/d/01jVEtHN"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]"
-            >
+            <a href="https://amzn.eu/d/01jVEtHN" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
                 <line x1="3" y1="6" x2="21" y2="6"/>
