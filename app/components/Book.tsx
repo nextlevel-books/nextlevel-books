@@ -46,7 +46,7 @@ export default function Book() {
           {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
           <div className="order-3 md:hidden flex flex-col items-center w-full">
             <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
-              Fünf Fremde. Sechs Wochen. Keine zweite Chance.
+              Fünf Fremde. Sechs Wochen.<br className="sm:hidden" /> Keine zweite Chance.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
               Fünf Jugendliche. Ein leerstehendes Gebäude. Eine Aufgabe,
@@ -62,7 +62,7 @@ export default function Book() {
                 <line x1="3" y1="6" x2="21" y2="6"/>
                 <path d="M16 10a4 4 0 01-8 0"/>
               </svg>
-              Jetzt bei Amazon
+              Bei Amazon kaufen
             </a>
           </div>
 
@@ -91,7 +91,7 @@ export default function Book() {
                 <line x1="3" y1="6" x2="21" y2="6"/>
                 <path d="M16 10a4 4 0 01-8 0"/>
               </svg>
-              Jetzt bei Amazon
+              Bei Amazon kaufen
             </a>
           </div>
 

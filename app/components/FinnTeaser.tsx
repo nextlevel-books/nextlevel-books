@@ -64,7 +64,7 @@ export default function FinnTeaser() {
             </div>
 
             <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm">
-              Fremde Stadt. Fremde Sprache. Ein neues Ich.
+              Fremde Stadt. Fremde Sprache.<br className="sm:hidden" /> Ein neues Ich.
             </p>
 
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
@@ -81,7 +81,7 @@ export default function FinnTeaser() {
               href="#club"
               className="inline-flex items-center justify-center border border-[#c9a236]/45 text-[#c9a236] hover:bg-[#c9a236]/10 font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200"
             >
-              Als Erste:r vom Erscheinen erfahren
+              Als erster informiert werden
             </a>
           </div>
 
