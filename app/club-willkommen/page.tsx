@@ -19,8 +19,26 @@ async function updateFirstname(email: string, firstname: string): Promise<void> 
     console.error("[club-willkommen] BREVO_API_KEY missing, skipping FIRSTNAME update");
     return;
   }
+
+  // 1. Alle Kontaktattribute abrufen → korrekten Feldnamen für Vorname ermitteln
   try {
-    const res = await fetch(
+    const attrRes = await fetch("https://api.brevo.com/v3/contacts/attributes", {
+      headers: { "api-key": apiKey },
+    });
+    const attrData = await attrRes.json();
+    const attrs = (attrData.attributes ?? []).map((a: Record<string, unknown>) => ({
+      category: a.category,
+      name:     a.name,
+      type:     a.type,
+    }));
+    console.log("[club-willkommen] contact attributes:", JSON.stringify(attrs));
+  } catch (e) {
+    console.error("[club-willkommen] attributes fetch error:", e);
+  }
+
+  // 2. FIRSTNAME setzen (Attributname wird durch Log oben verifiziert)
+  try {
+    const putRes = await fetch(
       `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
       {
         method: "PUT",
@@ -28,14 +46,26 @@ async function updateFirstname(email: string, firstname: string): Promise<void> 
         body: JSON.stringify({ attributes: { FIRSTNAME: firstname } }),
       }
     );
-    if (res.ok || res.status === 204) {
-      console.log("[club-willkommen] FIRSTNAME updated for:", email);
+    if (putRes.ok || putRes.status === 204) {
+      console.log("[club-willkommen] PUT FIRSTNAME succeeded, status:", putRes.status);
     } else {
-      const body = await res.json().catch(() => ({}));
-      console.error("[club-willkommen] FIRSTNAME update failed:", { status: res.status, body });
+      const body = await putRes.json().catch(() => ({}));
+      console.error("[club-willkommen] PUT FIRSTNAME failed:", { status: putRes.status, body });
     }
   } catch (e) {
-    console.error("[club-willkommen] FIRSTNAME update error:", e);
+    console.error("[club-willkommen] PUT error:", e);
+  }
+
+  // 3. Kontakt direkt danach lesen → prüfen ob Attribut gespeichert wurde
+  try {
+    const getRes = await fetch(
+      `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
+      { headers: { "api-key": apiKey } }
+    );
+    const contact = await getRes.json();
+    console.log("[club-willkommen] contact attributes after PUT:", JSON.stringify(contact.attributes ?? {}));
+  } catch (e) {
+    console.error("[club-willkommen] GET after PUT error:", e);
   }
 }
 
