@@ -156,11 +156,11 @@ export default async function ClubWillkommen({
         </p>
 
         {/* Was dich erwartet */}
-        <div className="w-full border border-[#c9a236]/15 rounded-xl p-8 mb-12 text-left">
+        <div className="w-full border border-[#c9a236]/15 rounded-xl p-8 mb-12 flex flex-col items-center">
           <p className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase mb-5">
             Was dich erwartet
           </p>
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-4 items-start">
             {perks.map((perk, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#c9a236] flex-shrink-0" />
