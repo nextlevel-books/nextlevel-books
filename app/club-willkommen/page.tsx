@@ -13,6 +13,35 @@ const perks = [
   "Aktionen und besondere Inhalte für Club-Mitglieder",
 ];
 
+async function sendWelcomeEmail(apiKey: string, email: string, vorname: string): Promise<void> {
+  const templateId = Number(process.env.BREVO_WELCOME_TEMPLATE_ID ?? "0");
+  if (!templateId || templateId <= 0) {
+    console.error("[club-willkommen] BREVO_WELCOME_TEMPLATE_ID missing or invalid, skipping welcome email");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "api-key": apiKey },
+      body: JSON.stringify({
+        to: [{ email }],
+        templateId,
+        params: { VORNAME: vorname },
+      }),
+    });
+
+    if (res.ok || res.status === 201) {
+      console.log("[club-willkommen] welcome email sent for:", email);
+    } else {
+      const body = await res.json().catch(() => ({}));
+      console.error("[club-willkommen] welcome email failed:", { status: res.status, body });
+    }
+  } catch (e) {
+    console.error("[club-willkommen] welcome email network error:", e);
+  }
+}
+
 async function updateVorname(email: string, firstname: string): Promise<void> {
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
@@ -53,6 +82,9 @@ async function updateVorname(email: string, firstname: string): Promise<void> {
         } catch (e) {
           console.error("[club-willkommen] GET after PUT error:", e);
         }
+
+        // Willkommensmail erst nach erfolgreichem VORNAME-Update senden
+        await sendWelcomeEmail(apiKey, email, firstname);
         return;
       }
 
