@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     // attributes wird für Template-Personalisierung (Betreff/Body) mitgesendet,
     // aber vom DOI-Endpunkt nicht dauerhaft im Kontaktprofil gespeichert.
     // Die dauerhafte Speicherung erfolgt über /club-willkommen nach Bestätigung.
-    ...(firstnameTrimmed ? { attributes: { FIRSTNAME: firstnameTrimmed } } : {}),
+    ...(firstnameTrimmed ? { attributes: { VORNAME: firstnameTrimmed } } : {}),
   };
 
   console.log("[waitlist] firstname check:", {

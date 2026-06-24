@@ -13,60 +13,60 @@ const perks = [
   "Aktionen und besondere Inhalte für Club-Mitglieder",
 ];
 
-async function updateFirstname(email: string, firstname: string): Promise<void> {
+async function updateVorname(email: string, firstname: string): Promise<void> {
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
-    console.error("[club-willkommen] BREVO_API_KEY missing, skipping FIRSTNAME update");
+    console.error("[club-willkommen] BREVO_API_KEY missing, skipping VORNAME update");
     return;
   }
 
-  // 1. Alle Kontaktattribute abrufen → korrekten Feldnamen für Vorname ermitteln
-  try {
-    const attrRes = await fetch("https://api.brevo.com/v3/contacts/attributes", {
-      headers: { "api-key": apiKey },
-    });
-    const attrData = await attrRes.json();
-    const attrs = (attrData.attributes ?? []).map((a: Record<string, unknown>) => ({
-      category: a.category,
-      name:     a.name,
-      type:     a.type,
-    }));
-    console.log("[club-willkommen] contact attributes:", JSON.stringify(attrs));
-  } catch (e) {
-    console.error("[club-willkommen] attributes fetch error:", e);
-  }
+  const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  const maxAttempts = 5;
+  let lastStatus = 0;
+  let lastBody: unknown = null;
 
-  // 2. FIRSTNAME setzen (Attributname wird durch Log oben verifiziert)
-  try {
-    const putRes = await fetch(
-      `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json", "api-key": apiKey },
-        body: JSON.stringify({ attributes: { FIRSTNAME: firstname } }),
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    if (attempt > 1) await delay(1000);
+    console.log(`[club-willkommen] VORNAME update attempt ${attempt} for:`, email);
+
+    try {
+      const putRes = await fetch(
+        `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", "api-key": apiKey },
+          body: JSON.stringify({ attributes: { VORNAME: firstname } }),
+        }
+      );
+
+      if (putRes.ok || putRes.status === 204) {
+        console.log(`[club-willkommen] VORNAME updated for: ${email} (attempt ${attempt})`);
+
+        // Kontakt lesen um gespeicherten Wert zu bestätigen
+        try {
+          const getRes = await fetch(
+            `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
+            { headers: { "api-key": apiKey } }
+          );
+          const contact = await getRes.json();
+          console.log("[club-willkommen] contact attributes after update:", JSON.stringify(contact.attributes ?? {}));
+        } catch (e) {
+          console.error("[club-willkommen] GET after PUT error:", e);
+        }
+        return;
       }
-    );
-    if (putRes.ok || putRes.status === 204) {
-      console.log("[club-willkommen] PUT FIRSTNAME succeeded, status:", putRes.status);
-    } else {
-      const body = await putRes.json().catch(() => ({}));
-      console.error("[club-willkommen] PUT FIRSTNAME failed:", { status: putRes.status, body });
+
+      lastStatus = putRes.status;
+      lastBody   = await putRes.json().catch(() => ({}));
+
+      // Nur bei 404 (Kontakt noch nicht angelegt) retry, sonst sofort abbrechen
+      if (putRes.status !== 404) break;
+    } catch (e) {
+      console.error(`[club-willkommen] VORNAME update network error (attempt ${attempt}):`, e);
     }
-  } catch (e) {
-    console.error("[club-willkommen] PUT error:", e);
   }
 
-  // 3. Kontakt direkt danach lesen → prüfen ob Attribut gespeichert wurde
-  try {
-    const getRes = await fetch(
-      `https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`,
-      { headers: { "api-key": apiKey } }
-    );
-    const contact = await getRes.json();
-    console.log("[club-willkommen] contact attributes after PUT:", JSON.stringify(contact.attributes ?? {}));
-  } catch (e) {
-    console.error("[club-willkommen] GET after PUT error:", e);
-  }
+  console.error("[club-willkommen] VORNAME update failed after all attempts:", { status: lastStatus, body: lastBody, email });
 }
 
 export default async function ClubWillkommen({
@@ -80,7 +80,7 @@ export default async function ClubWillkommen({
 
   // Serverseitig FIRSTNAME in Brevo aktualisieren, sobald DOI bestätigt wurde.
   if (email && firstname) {
-    await updateFirstname(email, firstname);
+    await updateVorname(email, firstname);
   }
 
   return (
