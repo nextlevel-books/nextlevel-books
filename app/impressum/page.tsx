@@ -62,7 +62,7 @@ export default function Impressum() {
         </Section>
 
         <Section title="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
-          <p>Daniel Feigenbutz</p>
+          <p>Daniel Feigenbutz – Executive Sparring &amp; Consulting</p>
           <p>c/o Autorenglück #80335</p>
           <p>Albert-Einstein-Straße 47</p>
           <p>02977 Hoyerswerda</p>
