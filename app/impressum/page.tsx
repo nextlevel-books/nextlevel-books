@@ -36,8 +36,9 @@ export default function Impressum() {
 
         <Section title="Angaben gemäß § 5 TMG">
           <p>Daniel Feigenbutz – Executive Sparring &amp; Consulting</p>
-          <p>Benrodestraße 44a</p>
-          <p>40597 Düsseldorf</p>
+          <p>c/o Autorenglück #80335</p>
+          <p>Albert-Einstein-Straße 47</p>
+          <p>02977 Hoyerswerda</p>
           <p>Deutschland</p>
         </Section>
 
@@ -62,8 +63,9 @@ export default function Impressum() {
 
         <Section title="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
           <p>Daniel Feigenbutz</p>
-          <p>Benrodestraße 44a</p>
-          <p>40597 Düsseldorf</p>
+          <p>c/o Autorenglück #80335</p>
+          <p>Albert-Einstein-Straße 47</p>
+          <p>02977 Hoyerswerda</p>
         </Section>
 
         <Section title="Haftung für Inhalte">
