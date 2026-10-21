@@ -42,9 +42,10 @@ export default function Datenschutz() {
             Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
           </p>
           <p>
-            Daniel Feigenbutz<br />
-            Benrodestraße 44a<br />
-            40597 Düsseldorf<br />
+            Daniel Feigenbutz – Executive Sparring &amp; Consulting<br />
+            c/o Autorenglück #80335<br />
+            Albert-Einstein-Straße 47<br />
+            02977 Hoyerswerda<br />
             Deutschland<br />
             E-Mail:{" "}
             <a
