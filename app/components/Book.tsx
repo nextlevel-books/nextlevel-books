@@ -14,7 +14,7 @@ export default function Book() {
           <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
             <h2 className="text-4xl font-black text-white leading-tight">NEXT LEVEL</h2>
             <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase">
-              Band 1 der Hauptreihe
+              Hauptreihe
             </span>
           </div>
 
@@ -72,7 +72,7 @@ export default function Book() {
               NEXT LEVEL
             </h2>
             <span className="inline-block text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase mb-5">
-              Band 1 der Hauptreihe
+              Hauptreihe
             </span>
             <p className="text-[#e8a030] font-semibold text-lg mb-6 leading-snug">
               Fünf Fremde. Sechs Wochen. Keine zweite Chance.

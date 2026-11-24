@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NEXT LEVEL – Jugendbuchreihe von Daniel Feigenbutz",
   description:
-    "Fünf Fremde. Sechs Wochen. Keine zweite Chance. Geschichten über Freundschaft, Mut, Vertrauen und die Frage, wer du sein möchtest, wenn niemand zuschaut.",
-  keywords: ["Jugendbuch", "Next Level", "Daniel Feigenbutz", "Jugendroman"],
+    "NEXT LEVEL und NEXT LEVEL: FINN – jetzt erhältlich. NEXT LEVEL: LEO erscheint im Frühjahr 2027. Jugendbuchreihe von Daniel Feigenbutz über Freundschaft, Mut, Identität und die Frage, wer du sein möchtest.",
+  keywords: ["Jugendbuch", "Next Level", "Daniel Feigenbutz", "Jugendroman", "Next Level Finn", "Next Level Leo", "Spin-off"],
   authors: [{ name: "Daniel Feigenbutz" }],
   icons: {
     icon: [
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NEXT LEVEL – Jugendbuchreihe",
     description:
-      "Fünf Fremde. Sechs Wochen. Keine zweite Chance. Ein Jugendroman von Daniel Feigenbutz.",
+      "NEXT LEVEL und NEXT LEVEL: FINN jetzt erhältlich. NEXT LEVEL: LEO erscheint im Frühjahr 2027. Jugendbuchreihe von Daniel Feigenbutz.",
     type: "website",
     locale: "de_DE",
   },
   twitter: {
     card: "summary_large_image",
     title: "NEXT LEVEL – Jugendbuchreihe",
-    description: "Fünf Fremde. Sechs Wochen. Keine zweite Chance.",
+    description: "NEXT LEVEL und NEXT LEVEL: FINN jetzt erhältlich. NEXT LEVEL: LEO erscheint im Frühjahr 2027.",
   },
   robots: {
     index: true,

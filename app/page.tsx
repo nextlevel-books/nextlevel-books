@@ -1,6 +1,7 @@
 import Hero from "@/app/components/Hero";
 import Book from "@/app/components/Book";
 import FinnTeaser from "@/app/components/FinnTeaser";
+import LeoTeaser from "@/app/components/LeoTeaser";
 import ForWhom from "@/app/components/ForWhom";
 import Club from "@/app/components/Club";
 import Author from "@/app/components/Author";
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Book />
       <FinnTeaser />
+      <LeoTeaser />
       <ForWhom />
       <Club />
       <Author />

@@ -12,22 +12,15 @@ export default function FinnTeaser() {
 
           {/* ── Titel-Block: nur Mobile (order-1) ── */}
           <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
-            <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
-                Demnächst
-              </span>
-            </div>
             <h2 className="text-4xl font-black text-white leading-tight">
               NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
             </h2>
             <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase mt-1">
-              Band 1 der Spin-off-Reihe
+              1. Spin-off
             </span>
           </div>
 
           {/* ── Cover: mobile order-2, Desktop linke Spalte ── */}
-          {/* Kein Overlay, kein Blinkeffekt – statisch */}
           <div className="order-2 md:order-none flex justify-center md:justify-end">
             <div className="relative group">
               <div className="absolute -inset-10 bg-[radial-gradient(ellipse_at_center,rgba(232,160,48,0.10)_0%,transparent_65%)] opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -41,7 +34,7 @@ export default function FinnTeaser() {
               >
                 <Image
                   src="/cover-finn.png"
-                  alt="NEXT LEVEL: FINN – Buchcover"
+                  alt="NEXT LEVEL: FINN – Buchcover von Daniel Feigenbutz"
                   fill
                   className="object-cover object-center"
                   sizes="252px"
@@ -50,29 +43,11 @@ export default function FinnTeaser() {
             </div>
           </div>
 
-          {/* ── Text + CTA: mobile order-3, Desktop rechte Spalte ── */}
-          <div className="order-3 md:order-none flex flex-col items-center md:items-start w-full">
-
-            {/* Titel: nur Desktop */}
-            <div className="hidden md:flex flex-col items-start mb-5">
-              <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
-                <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
-                  Demnächst
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
-                NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
-              </h2>
-              <span className="inline-block text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase">
-                Band 1 der Spin-off-Reihe
-              </span>
-            </div>
-
-            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none md:whitespace-nowrap">
+          {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
+          <div className="order-3 md:hidden flex flex-col items-center w-full">
+            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
               Fremde Stadt. Fremde Sprache.<br className="sm:hidden" /> Ein neues Ich.
             </p>
-
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
               Finn ist in einer neuen Stadt, in einer fremden Sprache und in
               einem Leben, das sich noch nicht wie seines anfühlt.
@@ -82,12 +57,45 @@ export default function FinnTeaser() {
               <br /><br />
               Manche Antworten findet man nicht dort, wo man gesucht hat.
             </p>
+            <a href="https://amzn.eu/d/0e8EivRF" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              Bei Amazon kaufen
+            </a>
+          </div>
 
-            <a
-              href="#club"
-              className="inline-flex items-center justify-center border border-[#c9a236]/45 text-[#c9a236] hover:bg-[#c9a236]/10 font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200"
-            >
-              Als erster informiert werden
+          {/* ── Desktop: rechte Spalte komplett ── */}
+          <div className="hidden md:flex flex-col items-start">
+            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
+              NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
+            </h2>
+            <span className="inline-block text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase mb-5">
+              1. Spin-off
+            </span>
+            <p className="text-[#e8a030] font-semibold text-lg mb-6 leading-snug">
+              Fremde Stadt. Fremde Sprache. Ein neues Ich.
+            </p>
+            <p className="text-[#b0a898] text-base leading-relaxed mb-10 max-w-sm">
+              Finn ist in einer neuen Stadt, in einer fremden Sprache und in
+              einem Leben, das sich noch nicht wie seines anfühlt.
+              <br /><br />
+              Während er versucht herauszufinden, wer er ohne die Gruppe wirklich
+              ist, begegnet er Menschen, die ihn fordern, spiegeln und verändern.
+              <br /><br />
+              Manche Antworten findet man nicht dort, wo man gesucht hat.
+            </p>
+            <a href="https://amzn.eu/d/0e8EivRF" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              Bei Amazon kaufen
             </a>
           </div>
 
