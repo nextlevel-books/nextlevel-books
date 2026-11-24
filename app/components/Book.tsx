@@ -8,10 +8,10 @@ export default function Book() {
       <div className="absolute inset-0 bg-[#070c18] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-center text-center md:text-left">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-start">
 
           {/* ── Titel + Band-Hinweis: nur Mobile (order-1) ── */}
-          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
+          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1 text-center">
             <h2 className="text-4xl font-black text-white leading-tight">NEXT LEVEL</h2>
             <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase">
               Hauptreihe
@@ -44,16 +44,18 @@ export default function Book() {
           </div>
 
           {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
-          <div className="order-3 md:hidden flex flex-col items-center w-full">
+          <div className="order-3 md:hidden flex flex-col items-center w-full text-center">
             <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
               Fünf Fremde. Sechs Wochen.<br className="sm:hidden" /> Keine zweite Chance.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
-              Fünf Jugendliche. Ein leerstehendes Gebäude. Eine Aufgabe,
-              die niemand von ihnen wollte.
+              Fünf Jugendliche, die unterschiedlicher kaum sein könnten. Ein altes Kontor. Und sechs Wochen Zeit, um ein Projekt zu entwickeln, das über die Zukunft eines ganzen Stadtviertels entscheidet.
               <br /><br />
-              Was als Schulprojekt beginnt, wird zu einer Reise voller Konflikte,
-              Freundschaften, Geheimnisse und Entscheidungen, die alles verändern können.
+              Finn beobachtet lieber, bevor er spricht. Zara sagt, was sie denkt. Mia sieht Dinge, die anderen entgehen. Leo hält sich lieber im Hintergrund. Und Niko übernimmt die Führung, noch bevor jemand entschieden hat, wer eigentlich führen soll. Aus fünf Fremden wird ein Team – doch je größer der Druck wird, desto deutlicher zeigt sich, wie unterschiedlich Vertrauen, Verantwortung und Führung verstanden werden können.
+              <br /><br />
+              Zwischen Konflikten, Freundschaften und unerwarteten Wendungen müssen die fünf herausfinden, wem sie vertrauen können, wofür sie selbst stehen und wann es Zeit ist, die eigene Stimme zu erheben.
+              <br /><br />
+              Der Auftakt des NEXT LEVEL-Universums verbindet Spannung mit den großen Fragen des Erwachsenwerdens: Was bedeutet echte Führung? Wie entsteht Vertrauen? Und was passiert, wenn junge Menschen plötzlich Entscheidungen treffen müssen, die wirklich etwas verändern?
             </p>
             <a href="https://amzn.eu/d/01jVEtHN" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
@@ -78,11 +80,13 @@ export default function Book() {
               Fünf Fremde. Sechs Wochen. Keine zweite Chance.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-10 max-w-sm">
-              Fünf Jugendliche. Ein leerstehendes Gebäude. Eine Aufgabe,
-              die niemand von ihnen wollte.
+              Fünf Jugendliche, die unterschiedlicher kaum sein könnten. Ein altes Kontor. Und sechs Wochen Zeit, um ein Projekt zu entwickeln, das über die Zukunft eines ganzen Stadtviertels entscheidet.
               <br /><br />
-              Was als Schulprojekt beginnt, wird zu einer Reise voller Konflikte,
-              Freundschaften, Geheimnisse und Entscheidungen, die alles verändern können.
+              Finn beobachtet lieber, bevor er spricht. Zara sagt, was sie denkt. Mia sieht Dinge, die anderen entgehen. Leo hält sich lieber im Hintergrund. Und Niko übernimmt die Führung, noch bevor jemand entschieden hat, wer eigentlich führen soll. Aus fünf Fremden wird ein Team – doch je größer der Druck wird, desto deutlicher zeigt sich, wie unterschiedlich Vertrauen, Verantwortung und Führung verstanden werden können.
+              <br /><br />
+              Zwischen Konflikten, Freundschaften und unerwarteten Wendungen müssen die fünf herausfinden, wem sie vertrauen können, wofür sie selbst stehen und wann es Zeit ist, die eigene Stimme zu erheben.
+              <br /><br />
+              Der Auftakt des NEXT LEVEL-Universums verbindet Spannung mit den großen Fragen des Erwachsenwerdens: Was bedeutet echte Führung? Wie entsteht Vertrauen? Und was passiert, wenn junge Menschen plötzlich Entscheidungen treffen müssen, die wirklich etwas verändern?
             </p>
             <a href="https://amzn.eu/d/01jVEtHN" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">

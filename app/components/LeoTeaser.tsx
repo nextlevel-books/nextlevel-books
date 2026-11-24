@@ -8,10 +8,10 @@ export default function LeoTeaser() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(232,160,48,0.04)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-center text-center md:text-left">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-start">
 
           {/* ── Titel-Block: nur Mobile (order-1) ── */}
-          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
+          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1 text-center">
             <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
@@ -39,8 +39,8 @@ export default function LeoTeaser() {
                 }}
               >
                 <Image
-                  src="/cover-leo.jpg"
-                  alt="NEXT LEVEL: LEO – Buchcover von Daniel Feigenbutz"
+                  src="/cover-leo.webp"
+                  alt="NEXT LEVEL: LEO – Cover. Andere Sicht. Eigene Wahrheit. Ein neuer Weg."
                   fill
                   className="object-cover object-center"
                   sizes="252px"
@@ -50,7 +50,7 @@ export default function LeoTeaser() {
           </div>
 
           {/* ── Text + CTA: mobile order-3, Desktop rechte Spalte ── */}
-          <div className="order-3 md:order-none flex flex-col items-center md:items-start w-full">
+          <div className="order-3 md:order-none flex flex-col items-center md:items-start w-full text-center md:text-left">
 
             {/* Titel: nur Desktop */}
             <div className="hidden md:flex flex-col items-start mb-5">
@@ -68,8 +68,8 @@ export default function LeoTeaser() {
               </span>
             </div>
 
-            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none md:whitespace-nowrap">
-              Andere Sicht. Eigene Wahrheit.<br className="sm:hidden" /> Ein neuer Weg.
+            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none">
+              Andere Sicht. Eigene Wahrheit. Ein neuer Weg.
             </p>
 
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
@@ -83,21 +83,23 @@ export default function LeoTeaser() {
               eigenen Blick auf die Welt zu entwickeln, gerät auch seine
               persönliche Wirklichkeit zunehmend ins Wanken.
               <br /><br />
-              Eine Geschichte über Wahrheit und Täuschung, Zugehörigkeit und
-              Ausgrenzung – und den Mut, Dinge anders zu sehen und seinen
-              eigenen Weg zu gehen.
+              Was ist noch wahr, wenn sich nahezu alles künstlich erzeugen
+              lässt? Wem kann man vertrauen, wenn verschiedene Menschen dieselbe
+              Wirklichkeit völlig unterschiedlich wahrnehmen? Und was passiert,
+              wenn man irgendwann auch der eigenen Wahrnehmung nicht mehr sicher
+              ist?
+              <br /><br />
+              NEXT LEVEL: LEO erzählt von Wahrheit und Täuschung, Zugehörigkeit
+              und Ausgrenzung – und vom Mut, Dinge anders zu sehen, die eigene
+              Wahrheit zu hinterfragen und schließlich einen neuen Weg zu gehen.
             </p>
 
-            <p className="text-[#b0a898] text-sm leading-relaxed max-w-sm">
-              Du möchtest als einer der Ersten erfahren, wann NEXT LEVEL: LEO
-              erscheint?{" "}
-              <a
-                href="#club"
-                className="text-[#c9a236] hover:text-[#d4b050] underline underline-offset-2 transition-colors duration-200"
-              >
-                Dann werde Teil des NEXT LEVEL CLUBS.
-              </a>
-            </p>
+            <a
+              href="#club"
+              className="inline-flex items-center justify-center border border-[#c9a236]/45 text-[#c9a236] hover:bg-[#c9a236]/10 font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200"
+            >
+              Als erster informiert werden
+            </a>
           </div>
 
         </div>

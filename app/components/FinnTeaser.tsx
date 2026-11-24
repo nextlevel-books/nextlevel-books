@@ -8,10 +8,10 @@ export default function FinnTeaser() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(232,160,48,0.04)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-center text-center md:text-left">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-start">
 
           {/* ── Titel-Block: nur Mobile (order-1) ── */}
-          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1">
+          <div className="order-1 md:hidden flex flex-col items-center w-full gap-1 text-center">
             <h2 className="text-4xl font-black text-white leading-tight">
               NEXT LEVEL: <span className="text-[#c9a236]">FINN</span>
             </h2>
@@ -44,18 +44,18 @@ export default function FinnTeaser() {
           </div>
 
           {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
-          <div className="order-3 md:hidden flex flex-col items-center w-full">
+          <div className="order-3 md:hidden flex flex-col items-center w-full text-center">
             <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
               Fremde Stadt. Fremde Sprache.<br className="sm:hidden" /> Ein neues Ich.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
-              Finn ist in einer neuen Stadt, in einer fremden Sprache und in
-              einem Leben, das sich noch nicht wie seines anfühlt.
+              Tausend Kilometer von zu Hause. Eine fremde Sprache, eine neue Stadt – und plötzlich kennt niemand den Finn, der er bisher gewesen ist.
               <br /><br />
-              Während er versucht herauszufinden, wer er ohne die Gruppe wirklich
-              ist, begegnet er Menschen, die ihn fordern, spiegeln und verändern.
+              Für ein Austauschjahr verlässt Finn Hamburg und zieht nach Paris. Zwischen einer neuen Schule, fremden Menschen und einer Stadt, die sich nicht dafür interessiert, wer er bisher war, bekommt er etwas, das er zu Hause kaum hatte: die Freiheit, sich selbst neu kennenzulernen. Dabei begegnet er Menschen, die ganz unterschiedliche Vorstellungen davon haben, was ein guter und richtiger Lebensweg ist.
               <br /><br />
-              Manche Antworten findet man nicht dort, wo man gesucht hat.
+              Je länger Finn in Paris lebt, desto stärker beschäftigt ihn eine Frage: Wie viel von dem, was wir für unsere eigenen Wünsche und Entscheidungen halten, stammt wirklich von uns – und wie viel davon wurde uns von Eltern, Schule, Freunden oder gesellschaftlichen Erwartungen mitgegeben?
+              <br /><br />
+              NEXT LEVEL: FINN ist eine Geschichte über Selbstfindung, Freundschaft, Liebe und den Mut, die richtigen Fragen zu stellen – auch dann, wenn die Antworten unbequem werden.
             </p>
             <a href="https://amzn.eu/d/0e8EivRF" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
@@ -80,13 +80,13 @@ export default function FinnTeaser() {
               Fremde Stadt. Fremde Sprache. Ein neues Ich.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-10 max-w-sm">
-              Finn ist in einer neuen Stadt, in einer fremden Sprache und in
-              einem Leben, das sich noch nicht wie seines anfühlt.
+              Tausend Kilometer von zu Hause. Eine fremde Sprache, eine neue Stadt – und plötzlich kennt niemand den Finn, der er bisher gewesen ist.
               <br /><br />
-              Während er versucht herauszufinden, wer er ohne die Gruppe wirklich
-              ist, begegnet er Menschen, die ihn fordern, spiegeln und verändern.
+              Für ein Austauschjahr verlässt Finn Hamburg und zieht nach Paris. Zwischen einer neuen Schule, fremden Menschen und einer Stadt, die sich nicht dafür interessiert, wer er bisher war, bekommt er etwas, das er zu Hause kaum hatte: die Freiheit, sich selbst neu kennenzulernen. Dabei begegnet er Menschen, die ganz unterschiedliche Vorstellungen davon haben, was ein guter und richtiger Lebensweg ist.
               <br /><br />
-              Manche Antworten findet man nicht dort, wo man gesucht hat.
+              Je länger Finn in Paris lebt, desto stärker beschäftigt ihn eine Frage: Wie viel von dem, was wir für unsere eigenen Wünsche und Entscheidungen halten, stammt wirklich von uns – und wie viel davon wurde uns von Eltern, Schule, Freunden oder gesellschaftlichen Erwartungen mitgegeben?
+              <br /><br />
+              NEXT LEVEL: FINN ist eine Geschichte über Selbstfindung, Freundschaft, Liebe und den Mut, die richtigen Fragen zu stellen – auch dann, wenn die Antworten unbequem werden.
             </p>
             <a href="https://amzn.eu/d/0e8EivRF" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#c9a236] hover:bg-[#d4b050] text-[#070c18] font-bold px-8 py-4 rounded-lg text-[11px] tracking-[0.25em] uppercase transition-all duration-200 hover:shadow-[0_0_28px_rgba(201,162,54,0.4)]">
