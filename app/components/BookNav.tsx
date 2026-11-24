@@ -6,7 +6,7 @@ const books = [
     src: "/cover.png",
     alt: "NEXT LEVEL – Buchcover",
     title: "NEXT LEVEL",
-    series: "Hauptreihe",
+    titleShort: "NEXT LEVEL",
     status: "Jetzt erhältlich",
     pulse: false,
   },
@@ -15,7 +15,7 @@ const books = [
     src: "/cover-finn.png",
     alt: "NEXT LEVEL: FINN – Buchcover",
     title: "NEXT LEVEL: FINN",
-    series: "1. Spin-off",
+    titleShort: "FINN",
     status: "Jetzt erhältlich",
     pulse: false,
   },
@@ -24,7 +24,7 @@ const books = [
     src: "/cover-leo.webp",
     alt: "NEXT LEVEL: LEO – Buchcover",
     title: "NEXT LEVEL: LEO",
-    series: "2. Spin-off",
+    titleShort: "LEO",
     status: "Frühjahr 2027",
     pulse: true,
   },
@@ -32,22 +32,23 @@ const books = [
 
 export default function BookNav() {
   return (
-    <section className="py-10 px-6 bg-[#070c18] border-b border-white/5">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-3 gap-4 sm:gap-8">
+    <section className="py-8 px-4 bg-[#070c18] border-b border-white/5">
+      {/* max-w-[480px] caps the 3-cover group at ~150px per cover on desktop */}
+      <div className="max-w-[480px] mx-auto">
+        <div className="grid grid-cols-3 gap-3 sm:gap-5">
           {books.map((book) => (
             <a
               key={book.href}
               href={book.href}
-              className="group flex flex-col items-center gap-3 text-center"
+              className="group flex flex-col items-center gap-2 text-center"
             >
               {/* Cover */}
               <div
-                className="relative overflow-hidden rounded-lg w-full transition-transform duration-300 group-hover:-translate-y-1"
+                className="relative overflow-hidden rounded-md w-full transition-transform duration-300 group-hover:-translate-y-1"
                 style={{
                   aspectRatio: "2/3",
                   boxShadow:
-                    "0 0 0 1px rgba(201,162,54,0.15),0 12px 32px rgba(0,0,0,0.7)",
+                    "0 0 0 1px rgba(201,162,54,0.15),0 8px 20px rgba(0,0,0,0.7)",
                 }}
               >
                 <Image
@@ -55,21 +56,22 @@ export default function BookNav() {
                   alt={book.alt}
                   fill
                   className="object-cover object-center"
-                  sizes="(max-width: 768px) 30vw, 200px"
+                  sizes="(max-width: 480px) 28vw, 150px"
                 />
               </div>
 
-              {/* Title */}
-              <p className="text-white font-bold text-xs sm:text-sm leading-tight">
-                {book.title}
+              {/* Title — full on sm+, short single word on xs */}
+              <p className="text-white font-bold leading-tight text-[10px] sm:text-xs">
+                <span className="hidden sm:inline">{book.title}</span>
+                <span className="sm:hidden">{book.titleShort}</span>
               </p>
 
               {/* Status */}
-              <span className="inline-flex items-center gap-1.5">
+              <span className="inline-flex items-center gap-1">
                 {book.pulse && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse flex-shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-[#c9a236] animate-pulse flex-shrink-0" />
                 )}
-                <span className="text-[#c9a236] text-[9px] sm:text-[10px] font-semibold tracking-[0.3em] uppercase">
+                <span className="text-[#c9a236] text-[8px] sm:text-[9px] font-semibold tracking-[0.2em] uppercase">
                   {book.status}
                 </span>
               </span>
