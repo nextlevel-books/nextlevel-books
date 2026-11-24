@@ -1,4 +1,5 @@
 import Hero from "@/app/components/Hero";
+import BookNav from "@/app/components/BookNav";
 import Book from "@/app/components/Book";
 import FinnTeaser from "@/app/components/FinnTeaser";
 import LeoTeaser from "@/app/components/LeoTeaser";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
       <Hero />
+      <BookNav />
       <Book />
       <FinnTeaser />
       <LeoTeaser />
