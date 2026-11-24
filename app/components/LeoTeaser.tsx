@@ -8,11 +8,22 @@ export default function LeoTeaser() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(232,160,48,0.04)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
+
+        {/* ── Status-Badge: Desktop (über dem Grid, damit Cover am Titel ausgerichtet) ── */}
+        <div className="hidden md:flex mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
+            <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
+              Frühjahr 2027
+            </span>
+          </div>
+        </div>
+
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-start">
 
-          {/* ── Titel-Block: nur Mobile (order-1) ── */}
+          {/* ── Mobile: Badge + Titel (order-1) ── */}
           <div className="order-1 md:hidden flex flex-col items-center w-full gap-1 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
+            <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
                 Frühjahr 2027
@@ -49,17 +60,11 @@ export default function LeoTeaser() {
             </div>
           </div>
 
-          {/* ── Text + CTA: mobile order-3, Desktop rechte Spalte ── */}
+          {/* ── Desktop: rechte Spalte (kein Badge hier – steht über dem Grid) ── */}
           <div className="order-3 md:order-none flex flex-col items-center md:items-start w-full text-center md:text-left">
 
             {/* Titel: nur Desktop */}
             <div className="hidden md:flex flex-col items-start mb-5">
-              <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236] animate-pulse" />
-                <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
-                  Frühjahr 2027
-                </span>
-              </div>
               <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
                 NEXT LEVEL: <span className="text-[#c9a236]">LEO</span>
               </h2>
@@ -68,7 +73,7 @@ export default function LeoTeaser() {
               </span>
             </div>
 
-            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none">
+            <p className="text-[#c9a236] font-semibold text-lg mb-5 leading-snug max-w-sm md:max-w-none">
               Andere Sicht. Eigene Wahrheit. Ein neuer Weg.
             </p>
 

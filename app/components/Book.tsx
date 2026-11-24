@@ -8,10 +8,27 @@ export default function Book() {
       <div className="absolute inset-0 bg-[#070c18] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
+
+        {/* ── Status-Badge: Desktop (über dem Grid, damit Cover am Titel ausgerichtet) ── */}
+        <div className="hidden md:flex mb-4">
+          <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236]" />
+            <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
+              Jetzt erhältlich
+            </span>
+          </div>
+        </div>
+
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-24 items-start">
 
-          {/* ── Titel + Band-Hinweis: nur Mobile (order-1) ── */}
+          {/* ── Mobile: Badge + Titel (order-1) ── */}
           <div className="order-1 md:hidden flex flex-col items-center w-full gap-1 text-center">
+            <div className="inline-flex items-center gap-2 bg-[#c9a236]/10 border border-[#c9a236]/20 rounded-full px-5 py-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#c9a236]" />
+              <span className="text-[11px] font-semibold tracking-[0.4em] text-[#c9a236] uppercase">
+                Jetzt erhältlich
+              </span>
+            </div>
             <h2 className="text-4xl font-black text-white leading-tight">NEXT LEVEL</h2>
             <span className="text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase">
               Hauptreihe
@@ -43,9 +60,9 @@ export default function Book() {
             </div>
           </div>
 
-          {/* ── Beschreibung + Button: nur Mobile (order-3) ── */}
+          {/* ── Mobile: Beschreibung + Button (order-3) ── */}
           <div className="order-3 md:hidden flex flex-col items-center w-full text-center">
-            <p className="text-[#e8a030] font-semibold text-lg mb-5 leading-snug">
+            <p className="text-[#c9a236] font-semibold text-lg mb-5 leading-snug">
               Fünf Fremde. Sechs Wochen.<br className="sm:hidden" /> Keine zweite Chance.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-8 max-w-sm">
@@ -68,7 +85,7 @@ export default function Book() {
             </a>
           </div>
 
-          {/* ── Desktop: rechte Spalte komplett ── */}
+          {/* ── Desktop: rechte Spalte (kein Badge hier – steht über dem Grid) ── */}
           <div className="hidden md:flex flex-col items-start">
             <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-1">
               NEXT LEVEL
@@ -76,7 +93,7 @@ export default function Book() {
             <span className="inline-block text-[10px] font-semibold tracking-[0.35em] text-[#c9a236]/70 uppercase mb-5">
               Hauptreihe
             </span>
-            <p className="text-[#e8a030] font-semibold text-lg mb-6 leading-snug">
+            <p className="text-[#c9a236] font-semibold text-lg mb-6 leading-snug">
               Fünf Fremde. Sechs Wochen. Keine zweite Chance.
             </p>
             <p className="text-[#b0a898] text-base leading-relaxed mb-10 max-w-sm">
